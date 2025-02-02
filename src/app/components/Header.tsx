@@ -2,18 +2,20 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, CloseOutlined, MenuOutlined } from "@ant-design/icons";
 
 import sgv1 from "@/Data/Icon/web Logo.svg";
 
 const Header: React.FC = () => {
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
 
+ 
+
   return (
     <header className="h-[80px] bg-white shadow-sm flex justify-center items-center">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="container mx-auto px-7 py-2 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" className="">
           <Image src={sgv1} alt="Logo" width={120} height={50} />
         </Link>
 
@@ -24,10 +26,13 @@ const Header: React.FC = () => {
             onMouseEnter={() => setIsSolutionsOpen(true)}
             onMouseLeave={() => setIsSolutionsOpen(false)}
           >
-            <div className="flex items-center space-x-1 cursor-pointer text-blue-600">
+            <Link
+              href="/solutions"
+              className="flex items-center space-x-1 cursor-pointer text-blue-600"
+            >
               <p className="text-lg">Solutions</p>
               <DownOutlined className="text-[10px] font-bold mt-1" />
-            </div>
+            </Link>
 
             {isSolutionsOpen && (
               <div className="absolute right-[-90px] mt-2 w-48 bg-white shadow-lg rounded-md py-2 border border-gray-200">
@@ -55,23 +60,27 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <Link href="/" className="text-lg text-blue-600 hover:underline underline-offset-[18px]">
+          <Link
+            href="/"
+            className="text-lg text-blue-600 hover:underline underline-offset-[18px]"
+          >
             Services
           </Link>
 
-          <Link href="/" className="text-lg text-blue-600 hover:underline underline-offset-[18px]">
+          <Link
+            href="/"
+            className="text-lg text-blue-600 hover:underline underline-offset-[18px]"
+          >
             About Us
           </Link>
 
           <button className="border border-blue-600 rounded-full px-4 py-1 flex items-center space-x-1 text-blue-600">
-            🌍 <span className="text-sm ml-1">EN</span> <DownOutlined className="text-sm"/>
+            🌍 <span className="text-sm ml-1">EN</span>{" "}
+            <DownOutlined className="text-sm" />
           </button>
         </nav>
 
-        {/* Language Selector & Contact Us Button */}
-        <div className="flex items-center space-x-4">
-          
-
+        <div className="hidden tablet:flex items-center space-x-4">
           <Link
             href="/contact"
             className="bg-orange-500 hover:bg-orange-600 text-white text-xl font-semibold px-6 py-2 rounded-lg"
@@ -79,7 +88,14 @@ const Header: React.FC = () => {
             Contact Us →
           </Link>
         </div>
+
+        <button className="flex tablet:hidden" >
+          <CloseOutlined className="text-2xl" />
+          <MenuOutlined className="text-2xl" />
+        </button>
       </div>
+
+     
     </header>
   );
 };
