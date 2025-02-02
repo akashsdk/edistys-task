@@ -8,11 +8,10 @@ import sgv1 from "@/Data/Icon/web Logo.svg";
 
 const Header: React.FC = () => {
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
-
- 
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="h-[80px] bg-white shadow-sm flex justify-center items-center">
+    <header className="h-[100px] bg-white shadow-sm flex justify-center items-center">
       <div className="container mx-auto px-7 py-2 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="">
@@ -20,7 +19,7 @@ const Header: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden tablet:flex space-x-6">
+        <nav className="hidden tablet:flex justify-center items-center space-x-6">
           <div
             className="relative group"
             onMouseEnter={() => setIsSolutionsOpen(true)}
@@ -74,10 +73,39 @@ const Header: React.FC = () => {
             About Us
           </Link>
 
-          <button className="border border-blue-600 rounded-full px-4 py-1 flex items-center space-x-1 text-blue-600">
-            🌍 <span className="text-sm ml-1">EN</span>{" "}
-            <DownOutlined className="text-sm" />
+          <button
+            className="border border-blue-600 rounded-full px-4 py-3 flex items-center space-x-1 text-blue-600"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            🌍 <span className="text-sm ml-1">EN</span>
+            <DownOutlined
+              className={`text-sm transform transition-transform ${
+                isOpen ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </button>
+
+          {isOpen && (
+            <div className="absolute left-[50%] mt-[260px] bg-white shadow-md rounded-md py-2 border border-gray-200">
+              <ul className="text-sm text-gray-700">
+                <li className="text-lg px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  EN (English)
+                </li>
+                <div className="w-[95%] h-[1.5px] ml-[2.5%] bg-slate-200" />
+                <li className="text-lg px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  TH (Thai)
+                </li>
+                <div className="w-[95%] h-[1.5px] ml-[2.5%] bg-slate-200" />
+                <li className="text-lg px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  ID (Bahasa Indonesia)
+                </li>
+                <div className="w-[95%] h-[1.5px] ml-[2.5%] bg-slate-200" />
+                <li className="text-lg px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  TW (Traditional Chinese)
+                </li>
+              </ul>
+            </div>
+          )}
         </nav>
 
         <div className="hidden tablet:flex items-center space-x-4">
@@ -89,13 +117,11 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        <button className="flex tablet:hidden" >
+        <button className="flex tablet:hidden">
           <CloseOutlined className="text-2xl" />
           <MenuOutlined className="text-2xl" />
         </button>
       </div>
-
-     
     </header>
   );
 };
