@@ -6,7 +6,7 @@ export default function Home() {
     <div className="w-full">
       <Header />
       <div className="text-3xl font-bold text-green-800 tablet:text-red-800">
-        ggg ok
+        ggg ok, now
       </div>
     </div>
   );
